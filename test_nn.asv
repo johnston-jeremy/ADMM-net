@@ -1,0 +1,14 @@
+b = b;
+[loss, x_hat] = nn_output(x, b, net1, A);
+[x_L history] = lasso(A, b, 1, 1, 1.0, 1.0, n, m);
+figure
+stem(x)
+title('x')
+figure
+stem(x_hat)
+title('x_{hat}')
+figure
+stem(x_L)
+title('x_{L}')
+errN = sum((A*x_hat - b).^2)/norm(b)
+errL = sum((A*x_L - b).^2)/norm(b)

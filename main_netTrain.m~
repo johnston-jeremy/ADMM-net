@@ -1,0 +1,53 @@
+%% This is a traning code for ADMM-Net via the L-BFGS optimization algorithm
+profile off
+profile on
+clear all;
+clc;
+addpath('./Train_LBFGS/')
+addpath('./Train_LBFGS/lb')
+addpath('./Train_LBFGS/Matlab')
+addpath('./layersfunction/')
+addpath('./util')
+addpath('./data')
+
+
+%% Network initialization
+net = InitNet ( );
+
+config;
+m = nnconfig.ImageSize;
+nn = nnconfig.PartitionSize;
+% Number of training pairs
+TN = nnconfig.TrainNumber;
+
+%% Initial loss
+wei0 = netTOwei(net);
+l0 = loss_with_gradient_total(wei0, data, m, nn, TN);
+
+%% L-BFGS optimization
+
+fun = @loss_with_gradient_total;
+
+% parameters in the L-BFGS algorithm
+% lower bound on feasible weights
+low = -inf*ones(length(wei0),1);
+% upper bound on feasible weights
+upp = inf*ones(length(wei0),1);
+% starting point
+opts.x0 = double(gather(wei0));
+opts.m = 5;
+% maximium iterations
+opts.maxIts = 10;
+opts.maxTotalIts = 7.2e4;
+opts.printEvery = 1;
+
+% Run L-BFGS
+[wei1, l1, info] = lbfgsb(fun, low, upp, opts);
+
+% Convert weights to net object
+net1 = weiTOnet(wei1);
+
+% Plot weights
+stem(wei1)
+
+fprintf('Before training, error is %f; after training, error is %f.\n', l0, l1);
