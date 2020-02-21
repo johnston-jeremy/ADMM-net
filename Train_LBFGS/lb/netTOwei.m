@@ -11,7 +11,10 @@ for n = 1:N
     end
 end
 
-wei = [real(wei); imag(wei)];
+if ~isreal(wei)
+    % separat real and imag parts
+    wei = [real(wei); imag(wei)];
+end
 
 end
 

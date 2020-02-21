@@ -1,9 +1,12 @@
 function net = weiTOnet(wei)
 %% This operation transforms the weight vector to the network.
 net = InitNet(0); % create blank network
-L = length(wei);
-wei = reshape(wei,L/2,2);
-wei = wei(:,1) + 1i*wei(:,2);
+if ~isreal(wei)
+    % extract real and imag parts
+    L = length(wei);
+    wei = reshape(wei,L/2,2);
+    wei = wei(:,1) + 1i*wei(:,2);
+end
 N = length(net.layers);
 id = 0;
 for n = 1:N

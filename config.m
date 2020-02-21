@@ -14,4 +14,4 @@ nnconfig.DataNmber = 100;
 nnconfig.ImageSize = 32;
 
 % Number of frequency grid points
-nnconfig.PartitionSize = 32;
+nnconfig.PartitionSize = 64;

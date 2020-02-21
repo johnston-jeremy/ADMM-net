@@ -26,8 +26,11 @@ if nargout == 1
     
 %% Compute avg loss and avg gradient
 elseif nargout == 2
-    % grad_length = length(weights);
-    grad_length = length(weights)/2; %divide by 2 because complex weights
+    if isreal(weights)
+        grad_length = length(weights);
+    else
+        grad_length = length(weights)/2; %divide by 2 because complex weights
+    end
     grad = zeros(grad_length,1);
     for i = 1:TN
         data = getMData(i);
@@ -36,8 +39,11 @@ elseif nargout == 2
         grad = grad + g;
     end
     loss = loss / TN;
-    grad = grad / TN;
-    grad = [real(grad); imag(grad)];
+    if isreal(weights)
+        grad = grad / TN;
+    else
+        grad = [real(grad); imag(grad)];
+    end
 else
     error('Invalid out put number.');
 end

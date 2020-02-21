@@ -6,7 +6,7 @@ function net = InitNet(flag)
 config;
 
 m = nnconfig.ImageSize;
-n=m;
+n= nnconfig.PartitionSize;
 
 % get A matrix of size m by m+n
 % A = gen_A(m, m+n);
