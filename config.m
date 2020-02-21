@@ -2,16 +2,16 @@
 global nnconfig;
 
 % Number of stages in network
-nnconfig.Stage = 10;
+nnconfig.Stage = 20;
 
 % Number of samples to use in training
-nnconfig.TrainNumber = 10000;
+nnconfig.TrainNumber = 100;
 
 % Number of samples to generate in Gen_traindata.m
-nnconfig.DataNmber = 10000;
+nnconfig.DataNmber = 100;
 
 % Received signal vector length
-nnconfig.ImageSize = 16;
+nnconfig.ImageSize = 32;
 
 % Number of frequency grid points
-nnconfig.PartitionSize = 48;
+nnconfig.PartitionSize = 32;

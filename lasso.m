@@ -1,4 +1,4 @@
-function [z, history, x_history] = lasso(A, b, lambda1, lambda2, rho, alpha, n1, n2)
+function [z, history, x_history] = lasso(A, b, lambda1, lambda2, rho, alpha, n1, n2, QUIET)
 % lasso  Solve lasso problem via ADMM
 %
 % [z, history] = lasso(A, b, lambda, rho, alpha);
@@ -27,7 +27,7 @@ t_start = tic;
 
 %% Global constants and defaults
 
-QUIET    = 0;
+% QUIET    = 1;
 MAX_ITER = 1000;
 ABSTOL   = 1e-4;
 RELTOL   = 1e-2;

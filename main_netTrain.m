@@ -12,7 +12,7 @@ addpath('./data')
 
 
 %% Network initialization
-net = InitNet ( );
+net = InitNet(1);
 
 config;
 m = nnconfig.ImageSize;
@@ -48,6 +48,6 @@ opts.printEvery = 1;
 net1 = weiTOnet(wei1);
 
 % Plot weights
-stem(wei1)
+% stem(wei1)
 
 fprintf('Before training, error is %f; after training, error is %f.\n', l0, l1);

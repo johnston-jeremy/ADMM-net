@@ -10,5 +10,8 @@ for n = 1:N
         end
     end
 end
+
+wei = [real(wei); imag(wei)];
+
 end
 

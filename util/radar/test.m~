@@ -1,0 +1,7 @@
+P = 100;
+E = zeros(P,1);
+for i = 1:P
+    MIMO
+    E(i) = abs(e_z - e_zz)/e_zz;
+end
+stem(E)
